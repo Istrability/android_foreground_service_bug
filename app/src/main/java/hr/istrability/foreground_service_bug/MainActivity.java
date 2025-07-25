@@ -3,16 +3,13 @@ package hr.istrability.foreground_service_bug;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.WindowCompat;
 
 public class MainActivity extends AppCompatActivity {
-
-    private WebView myWebView; // Declare WebView instance variable
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -21,22 +18,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*myWebView = findViewById(R.id.webView); // Find the WebView by its ID
+        Button myButton = findViewById(R.id.myClickableButton);
+        myButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Click handling");
+                Intent serviceIntent = new Intent(
+                    MainActivity.this,
+                    MyForegroundService.class
+                );
+                startForegroundService(serviceIntent);
+            }
+        });
 
-        // Enable JavaScript (optional, but many sites need it)
-        WebSettings webSettings = myWebView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        webSettings.setDomStorageEnabled(true);
-
-        // Set a WebViewClient to handle page navigation within the WebView
-        // Without this, links might open in the device's default browser app
-        myWebView.setWebViewClient(new WebViewClient());
-
-        // Or load local HTML content:
-        myWebView.loadData("<html><body><h1>Hello, WebView!</h1></body></html>", "text/html", "UTF-8");
-*/
-        Intent serviceIntent = new Intent(this, MyForegroundService.class);
-        startForegroundService(serviceIntent);
     }
 
 }
