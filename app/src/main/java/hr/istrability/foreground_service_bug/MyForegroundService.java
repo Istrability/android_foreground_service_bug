@@ -27,7 +27,7 @@ public class MyForegroundService extends Service {
         NotificationChannel channel = new NotificationChannel(
             channelId,
             "Do Nothing Service",
-            NotificationManager.IMPORTANCE_LOW
+            NotificationManager.IMPORTANCE_HIGH
         );
         NotificationManager manager = getSystemService(NotificationManager.class);
         manager.createNotificationChannel(channel);
