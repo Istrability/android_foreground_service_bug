@@ -1,6 +1,7 @@
 package hr.istrability.foreground_service_bug;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        myWebView = findViewById(R.id.webView); // Find the WebView by its ID
+        /*myWebView = findViewById(R.id.webView); // Find the WebView by its ID
 
         // Enable JavaScript (optional, but many sites need it)
         WebSettings webSettings = myWebView.getSettings();
@@ -33,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Or load local HTML content:
         myWebView.loadData("<html><body><h1>Hello, WebView!</h1></body></html>", "text/html", "UTF-8");
+*/
+        Intent serviceIntent = new Intent(this, MyForegroundService.class);
+        startForegroundService(serviceIntent);
     }
 
 }
